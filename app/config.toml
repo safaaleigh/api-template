@@ -1,0 +1,6 @@
+[database]
+user="safaa"
+name="todos"
+
+[server]
+port=8080
