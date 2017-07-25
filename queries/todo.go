@@ -48,3 +48,14 @@ func DeleteTodo(db *sqlx.DB, todoID uuid.UUID) error {
 
 	return nil
 }
+
+// GetTodos queries the database for a list of all todos
+func GetTodos(db *sqlx.DB) (*models.Todos, error) {
+	var todos models.Todos
+	err := db.Select(&todos, "SELECT * FROM todo")
+	if err != nil {
+		return nil, err
+	}
+
+	return &todos, nil
+}

@@ -31,6 +31,7 @@ func main() {
 	db := sqlx.MustConnect("postgres", "postgres://postgres:"+cfg.DB.User+"@127.0.0.1:5432/"+cfg.DB.Name+"?sslmode=disable")
 
 	router := fasthttprouter.New()
+	router.GET("/todos", ConnectDatabase(handlers.GetTodosHandler, db))
 	router.GET("/todos/:ID", ConnectDatabase(handlers.GetTodoByIDHandler, db))
 	router.POST("/todos", ConnectDatabase(handlers.CreateTodoHandler, db))
 	router.PUT("/todos", ConnectDatabase(handlers.UpdateTodoHandler, db))

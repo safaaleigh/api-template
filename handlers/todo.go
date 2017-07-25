@@ -129,3 +129,22 @@ func DeleteTodoHandler(ctx *fasthttp.RequestCtx, ps fasthttprouter.Params, db *s
 
 	ctx.SuccessString("text/plain", fasthttp.StatusMessage(fasthttp.StatusOK))
 }
+
+// GetTodosHandler handles request to get list of all todos
+func GetTodosHandler(ctx *fasthttp.RequestCtx, _ fasthttprouter.Params, db *sqlx.DB) {
+	todos, err := queries.GetTodos(db)
+	if err != nil {
+		ctx.Error(fasthttp.StatusMessage(fasthttp.StatusInternalServerError), fasthttp.StatusInternalServerError)
+		logrus.WithError(err).Error("Error fetching todos from database")
+		return
+	}
+
+	bytes, err := json.Marshal(todos)
+	if err != nil {
+		ctx.Error(fasthttp.StatusMessage(fasthttp.StatusInternalServerError), fasthttp.StatusInternalServerError)
+		logrus.WithError(err).Error("Error marshalling data")
+		return
+	}
+
+	ctx.Success("application/json", bytes)
+}
