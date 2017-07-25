@@ -111,6 +111,7 @@ func UpdateTodoHandler(ctx *fasthttp.RequestCtx, ps fasthttprouter.Params, db *s
 	ctx.Success("application/json", bytes)
 }
 
+// DeleteTodoHandler handles request to delete an exisitng todo
 func DeleteTodoHandler(ctx *fasthttp.RequestCtx, ps fasthttprouter.Params, db *sqlx.DB) {
 	todoID, err := uuid.Parse(ps.ByName("ID"))
 	if err != nil {
