@@ -6,8 +6,8 @@ import (
 	"github.com/Sirupsen/logrus"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"github.com/user/api-template/app"
-	"github.com/user/api-template/handlers"
+	"github.com/safaaleigh/api-template/app"
+	"github.com/safaaleigh/api-template/handlers"
 	"github.com/valyala/fasthttp"
 	"github.com/valyala/fasthttprouter"
 )

@@ -3,7 +3,7 @@ package queries
 import (
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
-	"github.com/user/api-template/models"
+	"github.com/safaaleigh/api-template/models"
 )
 
 // GetTodoByID queries the database for a particular todo
